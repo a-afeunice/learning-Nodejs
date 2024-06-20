@@ -1,4 +1,5 @@
 import { program } from 'commander';
+import colors from 'colors';
 import { mailTransport } from './mailTransport.mjs';
 
 program
@@ -10,8 +11,8 @@ program.parse();
 
 const options = program.opts();
 const args = program.args;
-console.log(options);
-console.log(args);
+// console.log(options);
+// console.log(args);
 if (options.subject && options.to && options.message) {
     // Send email
     mailTransport.sendMail({
@@ -22,7 +23,7 @@ if (options.subject && options.to && options.message) {
     })
     .then(console.log)
     .catch(console.log);
-    // console.log('Message sent');
+    console.log('Message sent'.green);
 } else {
-    console.log('Some options are missing');
+    console.log('Some options are missing'.red);
 }
